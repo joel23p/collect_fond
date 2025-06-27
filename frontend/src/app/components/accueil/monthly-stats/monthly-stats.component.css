@@ -1,0 +1,33 @@
+.chart-container {
+	background: white;
+	border-radius: 8px;
+	padding: 20px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	border: 1px solid #e9ecef;
+}
+
+.chart-container h5 {
+	color: #495057;
+	font-weight: 600;
+	margin-bottom: 20px;
+}
+
+.chart-container h5 i {
+	color: #007bff;
+}
+
+/* Set specific heights for better aspect ratios */
+.chart-container canvas {
+	max-height: 300px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+	.chart-container {
+		padding: 15px;
+	}
+
+	.chart-container canvas {
+		max-height: 250px;
+	}
+}

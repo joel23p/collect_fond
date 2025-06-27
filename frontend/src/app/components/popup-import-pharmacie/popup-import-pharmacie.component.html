@@ -1,0 +1,71 @@
+<p-toast [style]="{marginTop: '100px'}"></p-toast>
+<div class="card flex justify-content-center">
+	<p-dialog header="Import des pharmacies" [(visible)]="affichePopup" (onHide)="cacherPopup()" [modal]="true">
+
+		<div class="flex justify-content-center">
+			<p-fileUpload
+				[hidden]="loading || statutImportPharmacie"
+				name="fichiers"
+				chooseIcon="fa fa-folder-open"
+				chooseLabel="Importer"
+				chooseStyleClass="btn-blue"
+				maxFileSize="1000000"
+				chooseLabel="Choisir"
+				uploadLabel="Confirmer"
+				cancelLabel="Annuler"
+				[fileLimit]="1"
+				[url]="urlImport" accept=".xlsx, .csv"
+				(onBeforeUpload)="loading = true"
+				(onUpload)="onUpload($event)"
+				(onError)="onUploadError($event)"
+				uploadStyleClass="btn-blue"
+				removeStyleClass="btn-dark-blue"
+				showCancelButton="false"
+				[multiple]="true">
+				<ng-template pTemplate="content">
+					<ul *ngIf="fichiers.length">
+						<li *ngFor="let file of fichiers">
+							{{ file.name }} - {{ file.size }} Ko
+						</li>
+					</ul>
+				</ng-template>
+			</p-fileUpload>
+
+			<p-progressSpinner *ngIf="loading" strokeWidth="4" animationDuration=".5s" />
+		</div>
+
+		<div *ngIf="!loading && !!statutImportPharmacie">
+			<div class="row mb-3">
+				<p-messages [value]="messageImport"></p-messages>
+			</div>
+
+			<div *ngIf="entetesLignesNonEnregistrees?.length">
+				<p-table [columns]="entetesLignesNonEnregistrees" [value]="lignesNonEnregistrees"
+						 [tableStyle]="{ 'min-width': '50rem' }">
+					<ng-template pTemplate="header">
+						<tr>
+							<th class="col-numero">Numéro</th>
+							<th class="col-nom">Nom</th>
+							<th class="col-ville">Ville</th>
+							<th class="col-quartier">Quartier</th>
+							<th class="col-horaire">Heure Ouverture</th>
+							<th class="col-horaire">Heure Fermeture</th>
+							<th class="col-gerant">Nom du Gérant</th>
+							<th class="col-contact">Contacts</th>
+						</tr>
+					</ng-template>
+					<ng-template pTemplate="body" let-rowData let-columns="columns">
+						<tr>
+							<td *ngFor="let col of columns">
+								{{ rowData[col] }}
+							</td>
+						</tr>
+					</ng-template>
+				</p-table>
+			</div>
+		</div>
+		<p-footer>
+			<p-button class="btn-dark-blue" icon="fa fa-times" label="{{ isImportReussi ? 'Fermer' : 'Annuler' }}" (click)="cacherPopup()"/>
+		</p-footer>
+	</p-dialog>
+</div>

@@ -1,0 +1,74 @@
+.steps-section {
+    background: linear-gradient(135deg, #00a000 0%, #00c400 100%) !important;
+    position: relative;
+    padding: 4rem 0;
+}
+
+.steps-container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    padding: 3rem 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.step-icon {
+    width: 60px;
+    height: 60px;
+    background-color: #00a000;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translateX(-50%);
+    font-weight: bold;
+    font-size: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    margin: 10px;
+}
+
+.step-block {
+    position: relative;
+    padding-left: 80px;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+}
+
+.step-block:last-child {
+    border-left: none;
+}
+
+.step-block:hover {
+    transform: translateX(10px);
+}
+
+.step-block h6 {
+    color: #00a000;
+    margin-bottom: 0.5rem;
+}
+
+.step-block p {
+    color: #555;
+    line-height: 1.6;
+}
+
+.section-header {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.centers-link {
+    color: #00a000;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.centers-link:hover {
+    color: #007000;
+    text-decoration: underline;
+}

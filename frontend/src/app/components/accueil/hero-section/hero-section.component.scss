@@ -1,0 +1,35 @@
+.hero-container {
+    background: url('/assets/img/banner.jpg') no-repeat center center;
+    background-size: cover;
+    color: white;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(58, 58, 58, 0.5);
+    z-index: -1;
+  }
+  .hero-content {
+    text-align: center;
+    max-width: 800px;
+    padding: 0 20px;
+  }
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+  p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+  }

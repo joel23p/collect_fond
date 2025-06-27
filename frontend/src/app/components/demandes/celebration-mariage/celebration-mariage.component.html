@@ -1,0 +1,375 @@
+<div class="add-mariage-container" style="margin-top: 100px;">
+	<div class="layout-container">
+		<!-- Colonne gauche avec image fixe -->
+		<div class="left-column">
+			<div class="fixed-image">
+				<img src="../../../../assets/img/couple.jpg" alt="Illustration mariage">
+			</div>
+		</div>
+		<div class="right-column" *ngIf="estSoumis == false">
+			<h1>Formulaire de Demande de Mariage</h1>
+			<div class="form-description">
+				<h6>
+					Bienvenue sur le formulaire d’enregistrement de mariage.
+					Veuillez remplir soigneusement toutes les informations demandées afin de garantir l'exactitude des
+					données enregistrées.
+					Pour toute assistance, veuillez contacter le service d’état civil.
+				</h6>
+				<img src="../../../../assets/img/bague2.webp" alt="Test Image" width="100" />
+			</div>
+			<div class="progress-steps">
+				<div [class.active]="currentStep === 1" (click)="setStep(1)">Époux</div>
+				<div [class.active]="currentStep === 2" (click)="setStep(2)">Épouse</div>
+				<div [class.active]="currentStep === 3" (click)="setStep(3)">Information du mariage</div>
+				<div [class.active]="currentStep === 4" (click)="setStep(4)">Date de rendez-vous souhaitée</div>
+			</div>
+			<form class="mariage-form" (ngSubmit)="onSubmit()" [formGroup]="formulaireDemande">
+				<!-- Étape Époux -->
+				<div class="form-section" *ngIf="currentStep === 1">
+					<h2>Informations Époux</h2>
+					<div class="form-row">
+						<div class="form-group">
+							<label>Nom</label>
+							<input type="text" formControlName="nomEpoux" name="nom_epoux" required
+								placeholder="Nom" />
+						</div>
+						<div class="form-group">
+							<label>Prénoms</label>
+							<input type="text" formControlName="prenomsEpoux" name="prenoms_epoux" required
+								placeholder="Prénoms" />
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group">
+							<label>Téléphone</label>
+							<input type="tel" formControlName="telephoneEpoux" name="tel_epoux" required
+								placeholder="+225 XX XX XX XX" />
+						</div>
+						<div class="form-group">
+							<label>Profession</label>
+							<input type="text" formControlName="professionEpoux" name="profession_epoux"
+								placeholder="Profession" />
+						</div>
+					</div>
+
+					<div class="form-row">
+						<div class="form-group">
+							<label>Date de naissance</label>
+							<input type="date" formControlName="dateNaissEpoux" name="date_naissance_epoux"
+								required />
+						</div>
+						<div class="form-group">
+							<label>Lieu de naissance</label>
+							<input type="text" formControlName="lieuNaissEpoux" name="lieu_naissance_epoux"
+								required placeholder="Lieu de naissance" />
+						</div>
+					</div>
+
+					<div class="form-row">
+						<div class="form-group">
+							<label>Domicile</label>
+							<input type="text" formControlName="adresseEpoux" name="adresse_epoux"
+								placeholder="Adresse" />
+						</div>
+						<div class="form-group">
+							<label>Situation conjugale</label>
+							<select class= "form-select">
+								<option>Célibataire</option>
+								<option>Veuf</option>
+								<option>Divorcé</option>
+							</select>
+						</div>
+					</div>
+
+					<h2>Informations du père</h2>
+
+
+						<div class="form-row">
+							<div class="form-group">
+								<label>Nom</label>
+								<input type="text" formControlName="nomPereEpoux" name="nom_pere_epoux" required
+									   placeholder="Nom du père" />
+							</div>
+							<div class="form-group">
+								<label>Prénoms</label>
+								<input type="text" formControlName="prenomsPereEpoux" name="prenoms_pere_epoux" required
+									   placeholder="Prénoms du père" />
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group">
+								<label>Domicile</label>
+								<input type="text" formControlName="adressePereEpoux" name="adresse_pere_epoux" placeholder="Adresse du père" />
+							</div>
+
+							<div class="form-group">
+
+							</div>
+						</div>
+
+
+
+					<h2>Informations de la mère</h2>
+
+
+						<div class="form-row">
+							<div class="form-group">
+								<label>Nom</label>
+								<input type="text" formControlName="nomMereEpoux" name="nom_mere_epoux" required
+									   placeholder="Nom de la mère" />
+							</div>
+							<div class="form-group">
+								<label>Prénoms</label>
+								<input type="text" formControlName="prenomsMereEpoux" name="prenoms_Mere_epoux" required
+									   placeholder="Prénoms de la mère" />
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group">
+								<label>Domicile</label>
+								<input type="text" formControlName="adresseMereEpoux" name="adresse_mere_epoux" placeholder="Adresse de la mère" />
+							</div>
+
+							<div class="form-group">
+
+							</div>
+						</div>
+
+
+					<h2>Informations du témoin</h2>
+
+
+						<div class="form-row">
+							<div class="form-group">
+								<label>Nom</label>
+								<input type="text" formControlName="nomTemoinEpoux" name="nom_temoin_epoux" required
+									   placeholder="Nom du témoin" />
+							</div>
+							<div class="form-group">
+								<label>Prénoms</label>
+								<input type="text" formControlName="prenomsTemoinEpoux" name="prenoms_temoin_epoux" required
+									   placeholder="Prénoms du témoin" />
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group">
+								<label>Domicile</label>
+								<input type="text" formControlName="adresseTemoinEpoux" name="adresse_temoin_epoux" placeholder="Adresse du temoin" />
+							</div>
+							<div class="form-group">
+								<label>Profession</label>
+								<input type="text" formControlName="professionTemoinEpoux" name="profession_temoin_epoux"
+									   placeholder="Profession du temoin" />
+							</div>
+						</div>
+
+
+
+					<div class="form-actions">
+						<button type="button" class="nav-button primary"
+							(click)="nextStep()">Suivant</button>
+					</div>
+
+				</div>
+				<!-- Étape 2 Épouse -->
+				<div class="form-section" *ngIf="currentStep === 2">
+					<h2>Informations Épouse</h2>
+					<div class="form-row">
+						<div class="form-group">
+							<label>Nom</label>
+							<input type="text" formControlName="nomEpouse" name="nom_epouse" required
+								placeholder="Nom" />
+						</div>
+						<div class="form-group">
+							<label>Prénoms</label>
+							<input type="text" formControlName="prenomsEpouse" name="prenoms_epouse" required
+								placeholder="Prénoms" />
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group">
+							<label>Téléphone</label>
+							<input type="tel" formControlName="telephoneEpouse" name="tel_epouse"
+								placeholder="+225 XX XX XX XX" />
+						</div>
+						<div class="form-group">
+							<label>Profession</label>
+							<input type="text" formControlName="professionEpouse" name="profession_epouse"
+								placeholder="Profession" />
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group">
+							<label>Date de naissance</label>
+							<input type="date" formControlName="dateNaissEpouse" name="date_naissance_epouse" />
+						</div>
+						<div class="form-group">
+							<label>Lieu de naissance</label>
+							<input type="text" formControlName="lieuNaissEpouse" name="_epouse"
+								placeholder="Lieu de naissance" />
+						</div>
+					</div>
+
+					<div class="form-row">
+						<div class="form-group">
+							<label>Domicile</label>
+							<input type="text" formControlName="adresseEpouse" name="adresse_epouse"
+								   placeholder="Adresse" />
+						</div>
+						<div class="form-group">
+							<label>Situation conjugale</label>
+							<select class= "form-select">
+								<option>Célibataire</option>
+								<option>Veuf</option>
+								<option>Divorcé</option>
+							</select>
+						</div>
+					</div>
+
+					<h2>Informations du père</h2>
+
+
+						<div class="form-row">
+							<div class="form-group">
+								<label>Nom</label>
+								<input type="text" formControlName="nomPereEpouse" name="nom_pere_epouse" required
+									   placeholder="Nom du père" />
+							</div>
+							<div class="form-group">
+								<label>Prénoms</label>
+								<input type="text" formControlName="prenomsPereEpouse" name="prenoms_pere_epouse" required
+									   placeholder="Prénoms du père" />
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group">
+								<label>Domicile</label>
+								<input type="text" formControlName="adressePereEpouse" name="adresse_pere_epouse" placeholder="Adresse du père" />
+							</div>
+							<div class="form-group">
+
+							</div>
+						</div>
+
+
+
+					<h2>Informations de la mère</h2>
+
+
+						<div class="form-row">
+							<div class="form-group">
+								<label>Nom</label>
+								<input type="text" formControlName="nomMereEpouse" name="nom_mere_epouse" required
+									   placeholder="Nom de la mère" />
+							</div>
+							<div class="form-group">
+								<label>Prénoms</label>
+								<input type="text" formControlName="prenomsMereEpouse" name="prenoms_Mere_epouse" required
+									   placeholder="Prénoms de la mère" />
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group">
+								<label>Domicile</label>
+								<input type="text" formControlName="adresseMereEpouse" name="adresse_mere_epouse" placeholder="Adresse de la mère" />
+							</div>
+							<div class="form-group">
+
+							</div>
+						</div>
+
+
+
+					<h2>Informations du témoin</h2>
+
+
+						<div class="form-row">
+							<div class="form-group">
+								<label>Nom</label>
+								<input type="text" formControlName="nomTemoinEpouse" name="nom_temoin_epouse" required
+									   placeholder="Nom du témoin" />
+							</div>
+							<div class="form-group">
+								<label>Prénoms</label>
+								<input type="text" formControlName="prenomsTemoinEpouse" name="prenoms_temoin_epouse" required
+									   placeholder="Prénoms du témoin" />
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group">
+								<label>Domicile</label>
+								<input type="text" formControlName="adresseTemoinEpouse" name="adresse_temoin_epouse" placeholder="Adresse du temoin" />
+							</div>
+							<div class="form-group">
+								<label>Profession</label>
+								<input type="text" formControlName="professionTemoinEpouse" name="profession_temoin_epouse"
+									   placeholder="Profession du temoin" />
+							</div>
+						</div>
+
+					<div class="form-actions">
+						<button type="button" class="nav-button" [hidden]="currentStep <= 1"
+							(click)="previousStep()">Précédent</button>
+							<button type="button" class="nav-button primary"
+							(click)="nextStep()">Suivant</button>
+					</div>
+				</div>
+				<!--  étape 3 - Mois souhaité -->
+				<div class="form-section" *ngIf="currentStep === 3" >
+					<h2>Information sur le mariage </h2>
+
+					<div class="form-row">
+						<div class="form-group">
+							<label>Régime matrimonial</label>
+							<select class= "form-select">
+								<option>Communauté de bien</option>
+								<option>Séparation de bien</option>
+							</select>
+						</div>
+						<div class="form-group">
+
+
+						</div>
+					</div>
+
+					<div class="form-actions">
+						<button type="button" class="nav-button" [hidden]="currentStep <= 2"
+								(click)="previousStep()">Précédent</button>
+						<button type="button" class="nav-button primary"
+								(click)="nextStep()">Suivant</button>
+					</div>
+
+				</div>
+				<!--  étape 4 - Mois souhaité -->
+				<div *ngIf="currentStep === 4" class="form-section">
+					<h2>Le rendez-vous sera le </h2>
+
+					<div class="card flex justify-content-center">
+						<p-calendar  formControlName="dateRendezVous" [minDate]="minDate" [maxDate]="maxDate" [readonlyInput]="true" [showIcon]="true"
+						[showOnFocus]="false"
+						inputId="buttondisplay"/>
+					</div>
+					<div class="form-actions">
+						<button type="button" class="nav-button"
+							(click)="previousStep()">Précédent</button>
+
+						<button type="submit" class="nav-button primary" (click)="enregistrerDemandeMariage()"
+							[hidden]="currentStep !== 4">Enregistrer</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="right-column" *ngIf="estSoumis == true">
+			<h1>Demande enregistrée</h1>
+			<div class="alert alert-success">Votre demande a éte soumise avec succès : #{{ numeroDemande }} </div>
+			<form>
+				<div class="form-section">
+					<button type="button" class="btn btn-primary">Créer une nouvelle demande</button>
+					&nbsp;
+					<button type="button" class="btn btn-warning">Retour à l'accueil</button>
+				</div>
+
+			</form>
+		</div>
+		</div>
+</div>

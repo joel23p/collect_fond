@@ -1,0 +1,64 @@
+.services {
+	background: linear-gradient(135deg, #f6f9fc 0%, #f0f4f8 100%);
+	background-size: cover;
+	color: white;
+}
+
+.service-card {
+	position: relative;
+	background: #ffffff;
+	border-radius: 20px;
+	border: none;
+	overflow: hidden;
+	transition: all 0.4s ease;
+	cursor: pointer;
+	color: #101010;
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12); /* Ombre visible */
+}
+
+.service-card:hover {
+	background-color: #ff6600; /* Orange primaire */
+	color: #ffffff; /* Texte devient blanc */
+	transform: translateY(-10px) scale(1.02);
+	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); /* Ombre plus forte */
+}
+
+.service-card:hover .card-title,
+.service-card:hover .card-text {
+	color: #ffffff !important;
+}
+
+.service-card:hover .service-icon {
+	filter: brightness(10) saturate(2); /* Icône plus flashy */
+}
+
+.service-icon {
+	max-width: 150px;
+	margin-bottom: 20px;
+	transition: none !important; /* Aucune animation au hover */
+	filter: none !important;
+}
+
+.card-title {
+	font-size: 1.5rem;
+	font-weight: bold;
+	margin-bottom: 15px;
+	transition: color 0.3s ease;
+}
+
+.card-text {
+	font-size: 1.1rem;
+	line-height: 1.6;
+	transition: color 0.3s ease;
+}
+
+
+@media (max-width: 768px) {
+	.service-card {
+		height: auto;
+	}
+}
+
+.service-card:active {
+	transform: scale(0.98);
+}

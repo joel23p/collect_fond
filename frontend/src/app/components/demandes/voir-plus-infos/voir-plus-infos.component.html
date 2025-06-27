@@ -1,0 +1,95 @@
+	<p-dialog appendTo="body" draggable="false" header="Details de la demande"
+ (onHide)="fermer()" [modal]="true" [style]="{ width: '100rem',height:'100rem'}"
+    [(visible)]="visible">
+
+
+    <div class="formulaire-container">
+
+        <div id="Informations_base">
+            <div class="container pharmacy-info">
+                <div class="container">
+                    <p-accordion (activeIndexChange)="activeIndexChange($event.valueOf)" [activeIndex]="activeIndex">
+                    <div class="resume-content">
+                        <p-accordionTab header="1-Détails de la demande">
+                            <div class="resume-content">
+                                    <div class="resume-section grid-container">
+                                        <div class="info-item">
+                                            <strong>ID:</strong>
+                                            <span>{{ demande?.id }}</span>
+                                        </div>
+                                        <div class="info-item">
+                                            <strong>Type:</strong>
+                                            <span>{{ demande?.libelleTypeDemande }}</span>
+                                        </div>
+                                        <div class="info-item">
+                                            <strong>Numéro:</strong>
+                                            <span>{{ demande?.numeroDemande }}</span>
+                                        </div>
+                                        <div class="info-item">
+                                            <strong>Libéllé:</strong>
+                                            <span>{{ demande?.libelleTypeDemande }}</span>
+                                        </div>
+
+                                    </div>
+                            </div>
+							<p-timeline [value]="demande?.etapes" layout="horizontal" align="bottom"  >
+								<ng-template pTemplate="content" let-etape>
+									<span >
+										{{ etape.nom }}
+									</span>
+
+								</ng-template>
+								<ng-template pTemplate="marker" let-etape>
+								<span
+									class="flex w-2rem h-2rem align-items-center justify-content-center text-white border-circle z-1 shadow-1 bg-{{ etape.statut }}"
+								>
+									&bull;
+								</span>
+								</ng-template>
+							</p-timeline>
+                        </p-accordionTab>
+
+                        <p-accordionTab header="2-Etapes de validations">
+                            <div>
+
+                               <table class="table table-bordered" >
+								   <tr>
+									   <th>N°</th>
+									   <th>Nom de l'étape</th>
+									   <th>Responsable</th>
+									   <th>Date de début</th>
+									   <th>Date de la décision</th>
+									   <th>Statut</th>
+									   <th>Commentaire</th>
+								   </tr>
+
+								   <tr *ngFor="let etape of demande.etapes">
+									   <td> {{ etape.numero }} </td>
+									   <td>{{ etape.nom }}</td>
+									   <td>{{ etape.responsable }}</td>
+									   <td>{{ etape.dateDebut }}</td>
+									   <td>{{ etape.dateDecision }}</td>
+									   <td class="text-{{ etape.statut }}">{{ libelleStatut [etape.statut] }}</td>
+									   <td>{{ etape.commentaire }}</td>
+								   </tr>
+							   </table>
+                            </div>
+                        </p-accordionTab>
+
+                    </div>
+                </p-accordion>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <ng-template pTemplate="footer">
+        <div class="flex justify-content-end gap-2">
+            <p-button class="orange" icon="fa fa-times" label="Annuler" (click)="fermer()" />
+        </div>
+    </ng-template>
+</p-dialog>

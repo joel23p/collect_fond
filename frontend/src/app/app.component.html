@@ -1,0 +1,85 @@
+
+<div class="page-wrapper">
+	<!-- Sidebar -->
+	<section id="sidebar" class="sidebar fixed-top" [ngClass]="isToggle && !isMobile ? 'hide' : ''" [hidden]="isMobile">
+		<a [routerLink]="['/']" class="btn brand mt-3 ml-2">
+			<img src="assets/img/logo-bleu.png"  [hidden]="isToggle && !isMobile" style="width: 180px">
+		</a>
+		<hr>
+		<ul class="side-menu top">
+			<li>
+				<a [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/accueil']"
+				   class="btn shadow-xl" routerLinkActive="active" title="Accueil">
+					<i class='pi pi-home shadow-xl'></i>
+					<span class="text">Accueil</span>
+				</a>
+			</li>
+			<li>
+				<a [routerLinkActiveOptions]="{ exact: true }"
+				   [routerLink]="['/gestion-membres']" routerLinkActive="active"
+				   title="Gestion Des Membres ">
+					<i class='pi pi-file-o'></i>
+					<span class="text">Gestion Des Membres</span>
+				</a>
+			</li>
+			<li>
+				<a [routerLinkActiveOptions]="{ exact: true }"
+				   [routerLink]="['/gestion-paiements']" routerLinkActive="active"
+				   title="Gestion Des Paiements">
+					<i class='pi pi-bookmark'></i>
+					<span class="text">Gestion Des Paiements</span>
+				</a>
+			</li>
+			<li>
+				<a [routerLinkActiveOptions]="{ exact: true }"
+				   [routerLink]="['/espace/liste-reclamation']" routerLinkActive="active"
+				   title="Histoique">
+					<i class='pi pi-comment'></i>
+					<span class="text">Historique</span>
+				</a>
+			</li>
+		</ul>
+	</section>
+
+	<!-- Content -->
+	<section class="content bg-white" id="content"[ngClass]="isMobile ? 'fullwidth' : ''" >
+		<!-- Navbar -->
+		<nav class="d-flex justify-content-between shadow">
+			<div class="d-inline">
+				<i (click)="addToggle()" [hidden]="isMobile" class='pi pi-bars pi-menu' style="font-size: 1.7rem"></i>
+				<i (click)="isVisible = true" [hidden]="!isMobile" class='pi pi-bars pi-menu' style="font-size: 1.7rem"></i>
+			</div>
+			<div class="d-flex justify-content-between ml-5">
+				<div class="m-2 align-self-center utilisateurConnecte">
+					<i class="pi pi-user"></i>
+					<span class="utilisateur-nom ">
+            {{ utilisateurConnecte?.nomEtPrenomAbrege() | titlecase }}
+         			 </span>
+				</div>
+				<div class="m-2 align-self-center">
+					<button
+						pButton
+						pRipple
+						icon="pi pi-power-off"
+						class="btn-custom"
+						(click)="deconnecter()"
+						label="Déconnexion"
+						*ngIf="utilisateurConnecte">
+					</button>
+					<button
+						pButton
+						pRipple
+						icon="pi pi-power-off"
+						class="btn-custom"
+						(click)="connecter()"
+						label="Connexion"
+						*ngIf="!utilisateurConnecte">
+					</button>
+				</div>
+			</div>
+		</nav>
+		<p-toast></p-toast>
+		<router-outlet></router-outlet>
+		<main id="main"></main>
+	</section>
+</div>

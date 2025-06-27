@@ -1,0 +1,73 @@
+<p-dialog appendTo="body"
+          draggable="false"
+          header="Créer une pharmacie"
+          (onHide)="fermer()"
+          [modal]="true"
+          [style]="{ width: '45rem' }"
+          [(visible)]="visible">
+	<p-messages *ngIf="applicationErreur" [(value)]="messages"></p-messages>
+	<form [formGroup]="formulairePharmacie">
+		<div class="row">
+			<div class="col-md-6">
+				<label for="numero" class="required">Numéro</label>
+				<input pInputText id="numero" class="flex-auto custom-input" name="numero"
+				       formControlName="numero" placeholder="Numéro" autocomplete="off"/>
+			</div>
+			<div class="col-md-6">
+				<label for="nom-phamacie" class="required">Nom de la pharmacie</label>
+				<input pInputText type="text" id="nom-phamacie" class="flex-auto form-control" name="nom"
+				       formControlName="nom" placeholder="Nom pharmacie"/>
+			</div>
+		</div>
+
+		<div class="row mt-3">
+			<div class="col-6">
+				<label for="ville" class="required">Ville</label>
+				<input pInputText type="text" id="ville" class="flex-auto custom-input" name="ville"
+				       formControlName="ville" placeholder="Ville"/>
+			</div>
+			<div class="col-6">
+				<label for="quartier" class="required">Quartier</label>
+				<input pInputText type="text" id="quartier" class="flex-auto custom-input" name="quartier"
+				       formControlName="quartier" placeholder="Quartier"/>
+			</div>
+		</div>
+		<div class="row mt-3">
+			<div class="col-6">
+				<label for="heure-ouverture" class="required ">Heure d’ouverture</label>
+				<input pInputText type="time" id="heure-ouverture" class="flex-auto custom-input" name="heure_ouverture"
+				       formControlName="heureOuverture" placeholder="Heure ouverture"
+				       autocomplete="off"/>
+			</div>
+			<div class="col-6">
+				<label for="heure-fermeture" class="required ">Heure de fermeture</label>
+				<input pInputText type="time" id="heure-fermeture" class="flex-auto custom-input" name="heure_fermeture"
+				       formControlName="heureFermeture" placeholder="Heure fermeture"
+				       autocomplete="off"/>
+			</div>
+		</div>
+		<div class="row mt-3">
+			<div class="col-6">
+				<label for="nom-gerant" class="required">Nom du gérant</label>
+				<input pInputText type="text" id="nom-gerant" class="flex-auto" name="nom_gerant"
+				       formControlName="nomGerant" placeholder="Nom du gerant"/>
+			</div>
+			<div class="col-6">
+				<label for="contact" class="required">Contact</label>
+				<input pInputText type="text" id="contact" class="flex-auto" name="contact"
+				       formControlName="contact" placeholder="Contact"/>
+			</div>
+		</div>
+	</form>
+	<ng-template pTemplate="footer">
+		<div class="flex justify-content-end gap-2">
+			<p-button class="btn-dark-blue" icon="fa fa-times" label="Annuler" (click)="fermer()"/>
+			<p-button class="btn-blue"
+			          [disabled]="formulairePharmacie.invalid"
+			          icon="fa fa-save"
+			          label="Enregistrer"
+			          [loading]="loading"
+			          (click)="enregistrer()"/>
+		</div>
+	</ng-template>
+</p-dialog>

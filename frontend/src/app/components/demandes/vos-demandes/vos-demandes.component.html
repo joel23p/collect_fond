@@ -1,0 +1,48 @@
+
+<section class="services py-5">
+	<div class="card">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<h2 class="m-0">Vos demandes</h2>
+					<p-table
+						[value]="celebrationsMariage"
+						selectionMode="single"
+						[(selection)]="selectedDemande"
+						[tableStyle]="{ 'min-width': '50rem' }"
+						styleClass="p-datatable-gridlines"
+					>
+
+						<ng-template pTemplate="header">
+							<tr>
+								<th>Date</th>
+								<th>Type</th>
+								<th>N° Demande</th>
+								<th>Statut</th>
+								<th>Actions</th>
+							</tr>
+						</ng-template>
+						<ng-template pTemplate="body" let-celebrationMariage>
+							<tr>
+								<td>{{ celebrationMariage.dateRendezVous | date: 'dd/MM/yyyy à HH:mm:ss'}}</td>
+								<td>Célébration de mariage</td>
+								<td>{{celebrationMariage.id}}</td>
+								<td class="text-{{ celebrationMariage.statut }}">{{ libelleStatut[celebrationMariage.statut] }}</td>
+								<td>
+									<p-button  icon="pi pi-info-circle"  (click)="ouvrirPopupPourPlusInfos(celebrationMariage)"></p-button>
+									&nbsp;
+									<p-button icon="pi pi-download" href="/assets/docs/Extrait_Naissance_.pdf" target="_blank" >
+									</p-button>
+								</td>
+							</tr>
+						</ng-template>
+					</p-table>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<voir-plus-infos [visible]="visibleInfos" [demande]="selectedDemande"
+				 (visibleChangeInfos)="onHideModalPourPlusInfos($event)">
+</voir-plus-infos>

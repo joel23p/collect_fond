@@ -1,0 +1,29 @@
+.footer {
+	background-color: #111;
+	font-size: 0.9rem;
+}
+
+.footer-title {
+	font-size: 1.1rem;
+	font-weight: 600;
+	margin-bottom: 1rem;
+	color: #fff;
+}
+
+.footer-link {
+	display: block;
+	color: #bbb;
+	padding: 0.25rem 0;
+	transition: color 0.3s;
+	text-decoration: none;
+}
+
+.footer-link:hover {
+	color: #ff6600;
+	text-decoration: underline;
+}
+
+.footer small,
+.text-muted {
+	color: #aaa !important;
+}
